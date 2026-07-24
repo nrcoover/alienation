@@ -1,7 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://qq0gjyel2fm6"]
+[gd_scene load_steps=2 format=3 uid="uid://j57uaaweb83i"]
 
-[ext_resource type="Script" uid="uid://4jxtnvh4p1ux" path="res://Scenes/OutOfTime/OutOfTime.gd" id="1_fjvob"]
+[ext_resource type="Script" path="res://Scenes/OutOfTime/OutOfTime.cs" id="1_7x6ff"]
 
-[node name="OutOfTime" type="Node"]
-script = ExtResource("1_fjvob")
-life_s = 10.0
+[node name="OutOfTime" type="Node" node_paths=PackedStringArray("_timer")]
+script = ExtResource("1_7x6ff")
+_timer = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true

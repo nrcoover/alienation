@@ -2,7 +2,7 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://dek3eqeafunld"
+uid="uid://du6bnbe4r8q8r"
 path="res://.godot/imported/sfx_wpn_laser11.wav-0b3fdcfc74828c7b95a016b99cd109f3.sample"
 
 [deps]
@@ -21,4 +21,4 @@ edit/normalize=false
 edit/loop_mode=0
 edit/loop_begin=0
 edit/loop_end=-1
-compress/mode=2
+compress/mode=0

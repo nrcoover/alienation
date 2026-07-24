@@ -1,23 +1,27 @@
-[gd_scene load_steps=6 format=3 uid="uid://b4on2i2yykp6r"]
+[gd_scene load_steps=7 format=3 uid="uid://cloqofq2nvy5c"]
 
-[ext_resource type="PackedScene" uid="uid://cdf2n2vvpqpq3" path="res://Scenes/LevelBg/LevelBg.tscn" id="1_3hkb6"]
-[ext_resource type="PackedScene" uid="uid://cj6s025qtrnja" path="res://Scenes/ShakeCam/ShakeCam.tscn" id="2_4dwx7"]
-[ext_resource type="PackedScene" uid="uid://cs7twesq7bmwk" path="res://Scenes/Player/Player.tscn" id="3_4dwx7"]
-[ext_resource type="PackedScene" uid="uid://c8pkpg6y6ly4y" path="res://Scenes/ObjectMaker/ObjectMaker.tscn" id="4_k2uda"]
-[ext_resource type="AudioStream" uid="uid://t0l7khnjnye0" path="res://assets/sounds/loops/Mercury.wav" id="5_ksici"]
+[ext_resource type="PackedScene" uid="uid://bskpcvncmtef7" path="res://Scenes/ShakeCam/ShakeCam.tscn" id="1_4mykw"]
+[ext_resource type="Script" path="res://Scenes/Level/Level.cs" id="1_q2oye"]
+[ext_resource type="PackedScene" uid="uid://cdy67g20x00kv" path="res://Scenes/LevelBg/LevelBg.tscn" id="2_wcgru"]
+[ext_resource type="PackedScene" uid="uid://b6b0yuijsxai1" path="res://Scenes/ObjectMaker/ObjectMaker.tscn" id="3_cq5ir"]
+[ext_resource type="AudioStream" uid="uid://byiqhs42x1f8" path="res://assets/sounds/loops/Mercury.wav" id="6_0xv4h"]
+[ext_resource type="PackedScene" uid="uid://bc3ivisapki7c" path="res://Scenes/Player/Player.tscn" id="9_tq0dg"]
 
 [node name="Level" type="Node2D"]
+script = ExtResource("1_q2oye")
 
-[node name="ShakeCam" parent="." instance=ExtResource("2_4dwx7")]
+[node name="ShakeCam" parent="." instance=ExtResource("1_4mykw")]
 
-[node name="LevelBg" parent="." instance=ExtResource("1_3hkb6")]
+[node name="LevelBg" parent="." instance=ExtResource("2_wcgru")]
 
-[node name="ObjectMaker" parent="." instance=ExtResource("4_k2uda")]
-
-[node name="Player" parent="." instance=ExtResource("3_4dwx7")]
-position = Vector2(315, 424)
+[node name="ObjectMaker" parent="." instance=ExtResource("3_cq5ir")]
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_ksici")
-volume_db = -10.0
+stream = ExtResource("6_0xv4h")
+volume_db = -80.0
 autoplay = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("9_tq0dg")]
+position = Vector2(328, 388)

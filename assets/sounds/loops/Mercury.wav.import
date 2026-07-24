@@ -2,7 +2,7 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://t0l7khnjnye0"
+uid="uid://byiqhs42x1f8"
 path="res://.godot/imported/Mercury.wav-3bd6dcb821d1bc3489197d779005272b.sample"
 
 [deps]
@@ -21,4 +21,4 @@ edit/normalize=false
 edit/loop_mode=2
 edit/loop_begin=0
 edit/loop_end=-1
-compress/mode=2
+compress/mode=0

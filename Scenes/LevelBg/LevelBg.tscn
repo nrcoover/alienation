@@ -1,31 +1,43 @@
-[gd_scene load_steps=3 format=3 uid="uid://cdf2n2vvpqpq3"]
+[gd_scene load_steps=4 format=3 uid="uid://cdy67g20x00kv"]
 
-[ext_resource type="Texture2D" uid="uid://bfo2eu48t23pm" path="res://assets/backgrounds/spr_stars01.png" id="1_oa1p5"]
-[ext_resource type="Texture2D" uid="uid://dx6psa1o30grr" path="res://assets/backgrounds/spr_stars02.png" id="2_vj2w8"]
+[ext_resource type="Texture2D" uid="uid://gk46ox4jso76" path="res://assets/backgrounds/spr_stars01.png" id="1_8wr0f"]
+[ext_resource type="Texture2D" uid="uid://dpafairo64xxb" path="res://assets/backgrounds/spr_stars02.png" id="2_2n5ij"]
+[ext_resource type="Texture2D" uid="uid://e87vqgtsq50x" path="res://assets/backgrounds/GalaxyUno.png" id="2_8xb6g"]
 
 [node name="LevelBg" type="Node2D"]
 
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.00392157, 0.00392157, 0.00392157, 1)
+
 [node name="Parallax2D" type="Parallax2D" parent="."]
-scroll_scale = Vector2(0, 0)
-repeat_size = Vector2(0, 2560)
-autoscroll = Vector2(0, 50)
+scale = Vector2(1.5, 1.5)
+repeat_size = Vector2(0, 1600)
+autoscroll = Vector2(0, 20)
+follow_viewport = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
-texture = ExtResource("1_oa1p5")
+texture = ExtResource("2_8xb6g")
+centered = false
 
 [node name="Parallax2D2" type="Parallax2D" parent="."]
-scroll_scale = Vector2(0, 0)
 repeat_size = Vector2(0, 2560)
-autoscroll = Vector2(0, 90)
+autoscroll = Vector2(0, 40)
+follow_viewport = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D2"]
-texture = ExtResource("2_vj2w8")
+texture = ExtResource("1_8wr0f")
+centered = false
 
 [node name="Parallax2D3" type="Parallax2D" parent="."]
-scroll_scale = Vector2(0, 0)
-scroll_offset = Vector2(100, -150)
 repeat_size = Vector2(0, 2560)
-autoscroll = Vector2(0, 120)
+autoscroll = Vector2(0, 60)
+follow_viewport = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D3"]
-texture = ExtResource("2_vj2w8")
+texture = ExtResource("2_2n5ij")
+centered = false
