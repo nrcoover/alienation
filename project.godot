@@ -33,7 +33,7 @@ window/stretch/mode="canvas_items"
 
 [dotnet]
 
-project/assembly_name="SpaceAce"
+project/assembly_name="Alienation"
 
 [editor]
 
