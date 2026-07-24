@@ -3,9 +3,17 @@ using System;
 
 public partial class Main : Control
 {
-	// Called when the node enters the scene tree for the first time.
+	[Export] private UiButton _playButton;
+	[Export] private UiButton _quitButton;
+
 	public override void _Ready()
 	{        
-        GetTree().Paused = false;
+		GetTree().Paused = false;
+		SubscribeToSignals();
+	}
+
+	private void SubscribeToSignals() {
+		_playButton.Pressed += () => { GameManager.LoadGameScene(); };
+		_quitButton.Pressed += () => { GetTree().Quit(); };
 	}
 }
