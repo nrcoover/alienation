@@ -17,28 +17,65 @@ public partial class Player : Area2D
     private Vector2 _upperLeft;
     private Vector2 _lowerRight;
 
-	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
         AreaEntered += OnAreaEntered;
+        SetLimits();
 	}
 
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
 	{
+        UpdatePosition(delta);
 	}
 
     private Vector2 GetInput()
     {
-        Vector2 v = Vector2.Zero;
-        return v.Normalized();
+        Vector2 directionVector = new Vector2(
+            Input.GetAxis("left", "right"),
+            Input.GetAxis("up", "down")
+        );
+
+        HandleMovementAnimation(directionVector);
+
+        GD.Print($"v.x: {directionVector.X}, v.y: {directionVector.Y}, v.Length(): {directionVector.Length()}, v.Normalized(): {directionVector.Normalized()}");
+
+        return directionVector.Normalized();
     }
 
     private void SetLimits()
     {
-        var vp = GetViewportRect();
-        _lowerRight = new Vector2(vp.Size.X - MARGIN, vp.Size.Y - MARGIN);
+        var viewport = GetViewportRect();
+
+        _lowerRight = new Vector2(viewport.Size.X - MARGIN, viewport.Size.Y - MARGIN);
+
         _upperLeft = new Vector2(MARGIN, MARGIN);
+    }
+
+    private void HandleMovementAnimation(Vector2 direction) {
+
+        var noMovement = 0;
+
+        if (direction.X == noMovement) {
+            _animationPlayer.Play("fly");
+            return;
+        }
+
+        if (direction.X > noMovement) {
+            _sprite2D.FlipH = true;
+
+        } else if (direction.X < noMovement) {
+            _sprite2D.FlipH = false;
+        }
+
+        _animationPlayer.Play("turn");
+    }
+
+    private void UpdatePosition(double delta) {
+        var input = GetInput();
+
+        Vector2 desiredPosition = GlobalPosition + input * (float)delta * _speed;
+
+        GlobalPosition = desiredPosition.Clamp(_upperLeft, _lowerRight);
     }
 
     private void OnAreaEntered(Area2D area)
