@@ -26,6 +26,11 @@ public partial class Player : Area2D
     public override void _Process(double delta)
 	{
         UpdatePosition(delta);
+
+        if (Input.IsActionJustPressed("shoot"))
+        {
+            Shoot();
+        }
 	}
 
     private Vector2 GetInput()
@@ -76,6 +81,11 @@ public partial class Player : Area2D
         Vector2 desiredPosition = GlobalPosition + input * (float)delta * _speed;
 
         GlobalPosition = desiredPosition.Clamp(_upperLeft, _lowerRight);
+    }
+
+    private void Shoot()
+    {
+        SignalManager.EmitOnCreateBullet(GlobalPosition, _bulletDirection, _bulletSpeed, (int)Defs.BulletType.Player);
     }
 
     private void OnAreaEntered(Area2D area)

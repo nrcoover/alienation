@@ -3,9 +3,20 @@ using System;
 
 public partial class ObjectMaker : Node2D
 {
+    private PackedScene _playerBulletScene = GD.Load<PackedScene>("res://Scenes/Bullets/PlayerBullet.tscn");
     
     public override void _Ready() 
     { 
+        SubscribeToSignals();
+    }
+
+    public override void _ExitTree()
+    {
+        UnsubscribeFromSignals();
+    }
+
+    private void SubscribeToSignals()
+    {
         SignalManager.Instance.OnCreateExplosion += OnCreateExplosion;
         SignalManager.Instance.OnCreateHomingMissile += OnCreateHomingMissile;
         SignalManager.Instance.OnCreatePowerUp += OnCreatePowerUp;
@@ -13,11 +24,40 @@ public partial class ObjectMaker : Node2D
         SignalManager.Instance.OnCreateBullet += OnCreateBullet;
     }
 
-    private void OnCreateBullet(Vector2 startPos, Vector2 direction, float speed, int type)
+    private void UnsubscribeFromSignals()
     {
-        throw new NotImplementedException();
+        SignalManager.Instance.OnCreateExplosion -= OnCreateExplosion;
+        SignalManager.Instance.OnCreateHomingMissile -= OnCreateHomingMissile;
+        SignalManager.Instance.OnCreatePowerUp -= OnCreatePowerUp;
+        SignalManager.Instance.OnCreateBullet -= OnCreateBullet;
+        SignalManager.Instance.OnCreateRandomPowerUp -= OnCreateRandomPowerUp;
     }
 
+    private PackedScene GetBulletScene(int type)
+    {
+        Defs.BulletType bulletType = (Defs.BulletType)type;
+
+        switch (bulletType)
+        {
+            case Defs.BulletType.Player:
+                return _playerBulletScene;
+            default:
+                return _playerBulletScene;
+        }
+    }
+
+    private void AddObject(Node2D node, Vector2 globalPosition)
+    {
+        node.GlobalPosition = globalPosition;
+        AddChild(node);
+    }
+
+    private void OnCreateBullet(Vector2 startPos, Vector2 direction, float speed, int type)
+    {
+        var newScene = GetBulletScene(type).Instantiate<BaseBullet>();
+        newScene.Setup(direction, speed);
+        CallDeferred(MethodName.AddObject, newScene, startPos);
+    }
 
     private void OnCreateRandomPowerUp(Vector2 startPos)
     {
@@ -41,22 +81,5 @@ public partial class ObjectMaker : Node2D
     {
         throw new NotImplementedException();
     }
-
-
-    public override void _ExitTree()
-    {
-        SignalManager.Instance.OnCreateExplosion -= OnCreateExplosion;
-        SignalManager.Instance.OnCreateHomingMissile -= OnCreateHomingMissile;
-        SignalManager.Instance.OnCreatePowerUp -= OnCreatePowerUp;
-        SignalManager.Instance.OnCreateBullet -= OnCreateBullet;
-        SignalManager.Instance.OnCreateRandomPowerUp -= OnCreateRandomPowerUp;
-    }
-
-    private void AddObject(Node2D node, Vector2 globalPosition)
-    {
-        node.GlobalPosition = globalPosition;
-        AddChild(node);
-    }
-
     
 }

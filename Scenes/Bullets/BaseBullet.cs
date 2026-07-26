@@ -24,6 +24,12 @@ public partial class BaseBullet : HitBox
 		_visibleOnScreenNotifier2D.ScreenExited += OnScreenExited;
 	}
 
+	public void Setup(Vector2 direction, float speed)
+	{
+		_direction = direction;
+		_speed = speed;
+	}
+
 	public void BlowUp()
 	{
 		SetProcess(false);
