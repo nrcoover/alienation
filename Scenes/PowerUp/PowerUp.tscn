@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://syx6gywg0ld"]
+
+[ext_resource type="PackedScene" uid="uid://c4umn7min6i8n" path="res://Scenes/HitBox/HitBox.tscn" id="1_orrhi"]
+[ext_resource type="PackedScene" uid="uid://j57uaaweb83i" path="res://Scenes/OutOfTime/OutOfTime.tscn" id="2_2v3c7"]
+[ext_resource type="Texture2D" uid="uid://b4fd8pwkobg7e" path="res://assets/misc/shield_gold.png" id="2_kpcdk"]
+[ext_resource type="Script" path="res://Scenes/PowerUp/PowerUp.cs" id="2_mwu01"]
+[ext_resource type="AudioStream" uid="uid://c7dwcls72jdfa" path="res://assets/sounds/powerup/power_up_deploy.wav" id="5_dhf2v"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_al4it"]
+radius = 8.0
+
+[node name="PowerUp" node_paths=PackedStringArray("_sprite", "_sound") instance=ExtResource("1_orrhi")]
+collision_layer = 64
+collision_mask = 1
+script = ExtResource("2_mwu01")
+_speed = 100.0
+_sprite = NodePath("Sprite2D")
+_sound = NodePath("Sound")
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CircleShape2D_al4it")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="1"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_kpcdk")
+
+[node name="OutOfTime" parent="." index="2" instance=ExtResource("2_2v3c7")]
+_lifeTime = 20.0
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="." index="3"]
+stream = ExtResource("5_dhf2v")
