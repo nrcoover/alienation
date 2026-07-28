@@ -4,6 +4,7 @@ using System;
 public partial class ObjectMaker : Node2D
 {
     private PackedScene _playerBulletScene = GD.Load<PackedScene>("res://Scenes/Bullets/PlayerBullet.tscn");
+    private PackedScene _powerUpScene = GD.Load<PackedScene>("res://Scenes/PowerUp/PowerUp.tscn");
     
     public override void _Ready() 
     { 
@@ -61,21 +62,21 @@ public partial class ObjectMaker : Node2D
 
     private void OnCreateRandomPowerUp(Vector2 startPos)
     {
-        throw new NotImplementedException();
+        Defs.PowerUpType powerUpType = SpaceUtils.GetRandomEnumValue<Defs.PowerUpType>();
+        OnCreatePowerUp(startPos, (int)powerUpType);
     }
-
 
     private void OnCreatePowerUp(Vector2 startPos, int puType)
     {
-        throw new NotImplementedException();
+        var newScene = _powerUpScene.Instantiate<PowerUp>();
+        newScene.Setup((Defs.PowerUpType)puType);
+        CallDeferred(MethodName.AddObject, newScene, startPos);      
     }
-
 
     private void OnCreateHomingMissile(Vector2 startPos)
     {
         throw new NotImplementedException();
     }
-
 
     private void OnCreateExplosion(Vector2 startPos, int explosionType)
     {

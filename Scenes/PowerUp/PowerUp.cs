@@ -33,4 +33,9 @@ public partial class PowerUp : HitBox
 		GD.Print("PowerUp collected");  
 		QueueFree();
 	}
+
+	public void Setup(Defs.PowerUpType type)
+	{
+		_powerUpType = type;
+	}
 }
