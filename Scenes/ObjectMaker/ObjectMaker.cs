@@ -5,6 +5,7 @@ public partial class ObjectMaker : Node2D
 {
     private PackedScene _playerBulletScene = GD.Load<PackedScene>("res://Scenes/Bullets/PlayerBullet.tscn");
     private PackedScene _powerUpScene = GD.Load<PackedScene>("res://Scenes/PowerUp/PowerUp.tscn");
+    private PackedScene _explosion = GD.Load<PackedScene>("res://Scenes/Explosion/Explosion.tscn");
     
     public override void _Ready() 
     { 
@@ -80,7 +81,9 @@ public partial class ObjectMaker : Node2D
 
     private void OnCreateExplosion(Vector2 startPos, int explosionType)
     {
-        throw new NotImplementedException();
+        var newScene = _explosion.Instantiate<Explosion>();
+        newScene.Setup((Defs.ExplosionType)explosionType);
+        CallDeferred(MethodName.AddObject, newScene, startPos);
     }
     
 }
