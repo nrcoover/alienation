@@ -1,0 +1,73 @@
+[gd_scene load_steps=7 format=3 uid="uid://y6bgovb8kduo"]
+
+[ext_resource type="Script" path="res://Scenes/Shield/Shield.cs" id="1_b466r"]
+[ext_resource type="Texture2D" uid="uid://b02gfkw0ikb07" path="res://assets/shield/spr_shield_small.png" id="1_jme5d"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6tayy"]
+radius = 30.0666
+
+[sub_resource type="Animation" id="Animation_3iddn"]
+resource_name = "hit"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.172549, 0.247059, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_y78pa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_14dab"]
+_data = {
+"RESET": SubResource("Animation_y78pa"),
+"hit": SubResource("Animation_3iddn")
+}
+
+[node name="Shield" type="Area2D" node_paths=PackedStringArray("_animationPlayer", "_sound", "_collisionShape2D", "_timer")]
+collision_layer = 32
+collision_mask = 8
+script = ExtResource("1_b466r")
+_animationPlayer = NodePath("AnimationPlayer")
+_sound = NodePath("Sound")
+_collisionShape2D = NodePath("CollisionShape2D")
+_timer = NodePath("Timer")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -1.5708
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_jme5d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6tayy")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_14dab")
+}

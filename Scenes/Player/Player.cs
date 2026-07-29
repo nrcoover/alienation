@@ -13,6 +13,7 @@ public partial class Player : Area2D
 
     [Export] private Sprite2D _sprite2D;
     [Export] private AnimationPlayer _animationPlayer;
+    [Export] private Shield _shield;
 
     private Vector2 _upperLeft;
     private Vector2 _lowerRight;
@@ -90,5 +91,17 @@ public partial class Player : Area2D
 
     private void OnAreaEntered(Area2D area)
     {
+        if (area is PowerUp) {
+            var powerUp = area as PowerUp;
+
+            if (powerUp.GetPowerUpType() == Defs.PowerUpType.Health)
+            {
+                // health boost
+            }
+            else if (powerUp.GetPowerUpType() == Defs.PowerUpType.Shield)
+            {
+                _shield.EnableShield();
+            }
+        }
     }
 }

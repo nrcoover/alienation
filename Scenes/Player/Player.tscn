@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bc3ivisapki7c"]
+[gd_scene load_steps=9 format=3 uid="uid://bc3ivisapki7c"]
 
 [ext_resource type="Texture2D" uid="uid://nfslc3x0frjc" path="res://assets/ships/ships_human_1.png" id="1_6mddq"]
 [ext_resource type="Script" path="res://Scenes/Player/Player.cs" id="1_q5e1x"]
+[ext_resource type="PackedScene" uid="uid://y6bgovb8kduo" path="res://Scenes/Shield/Shield.tscn" id="3_wmug6"]
 
 [sub_resource type="Animation" id="Animation_j64ny"]
 length = 0.001
@@ -64,11 +65,12 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_34tlh"]
 radius = 13.0
 
-[node name="Player" type="Area2D" node_paths=PackedStringArray("_sprite2D", "_animationPlayer") groups=["player"]]
+[node name="Player" type="Area2D" node_paths=PackedStringArray("_sprite2D", "_animationPlayer", "_shield") groups=["player"]]
 collision_mask = 90
 script = ExtResource("1_q5e1x")
 _sprite2D = NodePath("Sprite2D")
 _animationPlayer = NodePath("AnimationPlayer")
+_shield = NodePath("Shield")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_6mddq")
@@ -82,3 +84,5 @@ autoplay = "fly"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_34tlh")
+
+[node name="Shield" parent="." instance=ExtResource("3_wmug6")]

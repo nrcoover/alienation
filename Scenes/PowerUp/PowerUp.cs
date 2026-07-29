@@ -38,4 +38,9 @@ public partial class PowerUp : HitBox
 	{
 		_powerUpType = type;
 	}
+
+	public Defs.PowerUpType GetPowerUpType()
+	{
+		return _powerUpType;
+	}
 }
