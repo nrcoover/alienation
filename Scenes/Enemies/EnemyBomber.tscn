@@ -138,4 +138,10 @@ position = Vector2(6, -6)
 [node name="Marker2D5" type="Marker2D" parent="BoomsContainer" index="4"]
 position = Vector2(-8, 21)
 
+[node name="HealthBar" parent="." index="6"]
+offset_left = -20.0
+offset_top = -34.0
+offset_right = 20.0
+offset_bottom = -32.0
+
 [editable path="HitBox"]

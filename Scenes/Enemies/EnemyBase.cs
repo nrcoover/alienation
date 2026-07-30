@@ -6,6 +6,8 @@ public partial class EnemyBase : PathFollow2D
 	[Export] private Timer _laserTimer;
 	[Export] private AudioStreamPlayer2D _sound;
 	[Export] private AnimatedSprite2D _animatedSprite2D;
+	[Export] private HealthBar _healthBar;
+	[Export] private HitBox _hitBox;
 				
 	[Export] private bool _shoots { get; set; } = false;
 	[Export] private bool _aimsAtPlayer { get; set; } = false;
@@ -28,7 +30,7 @@ public partial class EnemyBase : PathFollow2D
 			return;
 		}
 
-		_laserTimer.Timeout += LaserTimerTimeout;
+		SubscribeToSignals();
 		SpaceUtils.PlayRandomAnimation(_animatedSprite2D);
 		StartShootTimer();
 	}
@@ -36,6 +38,12 @@ public partial class EnemyBase : PathFollow2D
 	public override void _Process(double delta)
 	{
 		ProgressOnPath(delta);
+	}
+
+	private void SubscribeToSignals() {
+		_laserTimer.Timeout += LaserTimerTimeout;
+		_healthBar.OnDied += OnHealthBarDepleted;
+		_hitBox.AreaEntered += OnHitBoxAreaEntered;
 	}
 
 	private void ProgressOnPath(double delta)
@@ -80,6 +88,19 @@ public partial class EnemyBase : PathFollow2D
 	private void LaserTimerTimeout()
 	{
 		Shoot();
+	}
+
+	private void OnHealthBarDepleted() 
+	{
+		QueueFree();
+	}
+
+	private void OnHitBoxAreaEntered(Area2D area)
+	{
+		if(area is BaseBullet)
+		{
+			_healthBar.TakeDamage((area as BaseBullet).GetDamage());
+		}
 	}
 }
 

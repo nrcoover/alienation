@@ -123,4 +123,10 @@ shape = SubResource("CapsuleShape2D_xjoq0")
 
 [node name="Marker2D" type="Marker2D" parent="BoomsContainer" index="0"]
 
+[node name="HealthBar" parent="." index="6"]
+offset_left = -12.0
+offset_top = -16.0
+offset_right = 12.0
+offset_bottom = -14.0
+
 [editable path="HitBox"]

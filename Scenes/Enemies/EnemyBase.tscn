@@ -1,15 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://n08m5p2gyylh"]
+[gd_scene load_steps=5 format=3 uid="uid://n08m5p2gyylh"]
 
 [ext_resource type="Script" path="res://Scenes/Enemies/EnemyBase.cs" id="1_bnefj"]
 [ext_resource type="PackedScene" uid="uid://c4umn7min6i8n" path="res://Scenes/HitBox/HitBox.tscn" id="1_r4uiy"]
 [ext_resource type="PackedScene" uid="uid://j57uaaweb83i" path="res://Scenes/OutOfTime/OutOfTime.tscn" id="2_jwqlw"]
+[ext_resource type="PackedScene" uid="uid://px34d1f5waek" path="res://Scenes/HealthBar/HealthBar.tscn" id="4_166cj"]
 
-[node name="EnemyBase" type="PathFollow2D" node_paths=PackedStringArray("_laserTimer", "_sound", "_animatedSprite2D")]
+[node name="EnemyBase" type="PathFollow2D" node_paths=PackedStringArray("_laserTimer", "_sound", "_animatedSprite2D", "_healthBar", "_hitBox")]
 rotates = false
 script = ExtResource("1_bnefj")
 _laserTimer = NodePath("LasterTimer")
 _sound = NodePath("Sound")
 _animatedSprite2D = NodePath("AnimatedSprite2D")
+_healthBar = NodePath("HealthBar")
+_hitBox = NodePath("HitBox")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 rotation = 3.14159
@@ -26,3 +29,5 @@ one_shot = true
 [node name="Sound" type="AudioStreamPlayer2D" parent="."]
 
 [node name="BoomsContainer" type="Node2D" parent="."]
+
+[node name="HealthBar" parent="." instance=ExtResource("4_166cj")]
