@@ -1,0 +1,126 @@
+[gd_scene load_steps=19 format=3 uid="uid://cpnap6s8imfa6"]
+
+[ext_resource type="PackedScene" uid="uid://n08m5p2gyylh" path="res://Scenes/Enemies/EnemyBase.tscn" id="1_f2yd6"]
+[ext_resource type="Texture2D" uid="uid://cq46g7bghgrcq" path="res://assets/ships/zipper_1.png" id="2_4uud7"]
+[ext_resource type="Texture2D" uid="uid://baqoa12mplvy3" path="res://assets/ships/zipper_2.png" id="3_iiob3"]
+[ext_resource type="Texture2D" uid="uid://ck5b1q1j8hv5o" path="res://assets/ships/zipper_3.png" id="4_xav0l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uuapd"]
+atlas = ExtResource("2_4uud7")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gcsbd"]
+atlas = ExtResource("2_4uud7")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rouck"]
+atlas = ExtResource("2_4uud7")
+region = Rect2(96, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_en3rc"]
+atlas = ExtResource("2_4uud7")
+region = Rect2(144, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xtig4"]
+atlas = ExtResource("3_iiob3")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xxa60"]
+atlas = ExtResource("3_iiob3")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fn2p3"]
+atlas = ExtResource("3_iiob3")
+region = Rect2(96, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6h4d6"]
+atlas = ExtResource("3_iiob3")
+region = Rect2(144, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cy5f5"]
+atlas = ExtResource("4_xav0l")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d0pwo"]
+atlas = ExtResource("4_xav0l")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8dk6l"]
+atlas = ExtResource("4_xav0l")
+region = Rect2(96, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kf62t"]
+atlas = ExtResource("4_xav0l")
+region = Rect2(144, 0, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_40ab0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uuapd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gcsbd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rouck")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_en3rc")
+}],
+"loop": true,
+"name": &"zipper1",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xtig4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xxa60")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fn2p3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6h4d6")
+}],
+"loop": true,
+"name": &"zipper2",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cy5f5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d0pwo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8dk6l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kf62t")
+}],
+"loop": true,
+"name": &"zipper3",
+"speed": 8.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xjoq0"]
+radius = 13.0
+height = 40.0
+
+[node name="EnemyZipper" instance=ExtResource("1_f2yd6")]
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_40ab0")
+animation = &"zipper3"
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_xjoq0")
+
+[node name="Marker2D" type="Marker2D" parent="BoomsContainer" index="0"]
+
+[editable path="HitBox"]

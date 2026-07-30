@@ -32,6 +32,7 @@ public partial class BaseBullet : HitBox
 
 	public void BlowUp()
 	{
+		SignalManager.EmitOnCreateExplosion(GlobalPosition, (int)Defs.ExplosionType.Explosion);
 		SetProcess(false);
 		QueueFree();
 	}

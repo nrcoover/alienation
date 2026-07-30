@@ -1,11 +1,32 @@
-[gd_scene load_steps=7 format=3 uid="uid://cloqofq2nvy5c"]
+[gd_scene load_steps=13 format=3 uid="uid://cloqofq2nvy5c"]
 
 [ext_resource type="PackedScene" uid="uid://bskpcvncmtef7" path="res://Scenes/ShakeCam/ShakeCam.tscn" id="1_4mykw"]
 [ext_resource type="Script" path="res://Scenes/Level/Level.cs" id="1_q2oye"]
 [ext_resource type="PackedScene" uid="uid://cdy67g20x00kv" path="res://Scenes/LevelBg/LevelBg.tscn" id="2_wcgru"]
 [ext_resource type="PackedScene" uid="uid://b6b0yuijsxai1" path="res://Scenes/ObjectMaker/ObjectMaker.tscn" id="3_cq5ir"]
 [ext_resource type="AudioStream" uid="uid://byiqhs42x1f8" path="res://assets/sounds/loops/Mercury.wav" id="6_0xv4h"]
+[ext_resource type="PackedScene" uid="uid://bh22irwnured8" path="res://Scenes/Enemies/EnemyBiomech.tscn" id="7_2v5na"]
+[ext_resource type="PackedScene" uid="uid://cpnap6s8imfa6" path="res://Scenes/Enemies/EnemyZipper.tscn" id="8_q6jem"]
+[ext_resource type="PackedScene" uid="uid://wao0uwtxnvrh" path="res://Scenes/Enemies/EnemyBomber.tscn" id="9_im8rv"]
 [ext_resource type="PackedScene" uid="uid://bc3ivisapki7c" path="res://Scenes/Player/Player.tscn" id="9_tq0dg"]
+
+[sub_resource type="Curve2D" id="Curve2D_s306u"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -92, 467, 0, 0, 0, 0, 97, 138, 0, 0, 0, 0, 529, 139, 0, 0, 0, 0, 755, 485)
+}
+point_count = 4
+
+[sub_resource type="Curve2D" id="Curve2D_4aipb"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 111, 553, 0, 0, 0, 0, -121, 230, 0, 0, 0, 0, 105, -36, 0, 0, 0, 0, 300, 219, 0, 0, 0, 0, 548, -35, 0, 0, 0, 0, 757, 219, 0, 0, 0, 0, 508, 547)
+}
+point_count = 7
+
+[sub_resource type="Curve2D" id="Curve2D_pkc7y"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 53, 621, 0, 0, 0, 0, 55, 96, 0, 0, 0, 0, 153, 260, 0, 0, 0, 0, 452, 266, 0, 0, 0, 0, 583, 97, 0, 0, 0, 0, 573, 603)
+}
+point_count = 6
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_q2oye")
@@ -26,3 +47,23 @@ autoplay = true
 [node name="Player" parent="." instance=ExtResource("9_tq0dg")]
 position = Vector2(306, 425)
 _bulletSpeed = 280.0
+
+[node name="PathsContainer" type="Node2D" parent="."]
+
+[node name="Path2D" type="Path2D" parent="PathsContainer"]
+curve = SubResource("Curve2D_s306u")
+
+[node name="EnemyBiomech" parent="PathsContainer/Path2D" instance=ExtResource("7_2v5na")]
+position = Vector2(-92, 467)
+
+[node name="Path2D2" type="Path2D" parent="PathsContainer"]
+curve = SubResource("Curve2D_4aipb")
+
+[node name="EnemyBomber" parent="PathsContainer/Path2D2" instance=ExtResource("8_q6jem")]
+position = Vector2(111, 553)
+
+[node name="Path2D3" type="Path2D" parent="PathsContainer"]
+curve = SubResource("Curve2D_pkc7y")
+
+[node name="EnemyZipper" parent="PathsContainer/Path2D3" instance=ExtResource("9_im8rv")]
+position = Vector2(53, 621)

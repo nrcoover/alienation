@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://n08m5p2gyylh"]
+
+[ext_resource type="Script" path="res://Scenes/Enemies/EnemyBase.cs" id="1_bnefj"]
+[ext_resource type="PackedScene" uid="uid://c4umn7min6i8n" path="res://Scenes/HitBox/HitBox.tscn" id="1_r4uiy"]
+[ext_resource type="PackedScene" uid="uid://j57uaaweb83i" path="res://Scenes/OutOfTime/OutOfTime.tscn" id="2_jwqlw"]
+
+[node name="EnemyBase" type="PathFollow2D" node_paths=PackedStringArray("_laserTimer", "_sound", "_animatedSprite2D")]
+rotates = false
+script = ExtResource("1_bnefj")
+_laserTimer = NodePath("LasterTimer")
+_sound = NodePath("Sound")
+_animatedSprite2D = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+rotation = 3.14159
+
+[node name="HitBox" parent="." instance=ExtResource("1_r4uiy")]
+collision_layer = 2
+collision_mask = 4
+
+[node name="OutOfTime" parent="." instance=ExtResource("2_jwqlw")]
+
+[node name="LasterTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="BoomsContainer" type="Node2D" parent="."]

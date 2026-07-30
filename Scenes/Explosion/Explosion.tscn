@@ -172,6 +172,7 @@ animations = [{
 }]
 
 [node name="Explosion" type="AnimatedSprite2D" node_paths=PackedStringArray("_sound")]
+z_index = 10
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_vy5cc")
 animation = &"explosion"
