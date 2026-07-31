@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EnemyWave" load_steps=3 format=3 uid="uid://cit6clk6e84fx"]
+
+[ext_resource type="PackedScene" uid="uid://bh22irwnured8" path="res://Scenes/Enemies/EnemyBiomech.tscn" id="1_cucxd"]
+[ext_resource type="Script" path="res://Resources/EnemyWave.cs" id="1_eqrev"]
+
+[resource]
+script = ExtResource("1_eqrev")
+EnemyScene = ExtResource("1_cucxd")
+Speed = 100.0
+Gap = 1.4
+Number = 8

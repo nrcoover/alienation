@@ -17,12 +17,13 @@ public partial class EnemyBase : PathFollow2D
 	[Export] private Vector2 _bulletDirection { get; set; } = Vector2.Down;
 	[Export] private float _bulletWaitTime { get; set; } = 2.0f;
 	[Export] private float _bulletWaitTimeVar { get; set; } = 0.05f;
-	[Export] private float _speed = 50.0f;
 	[Export] public float _powerUpChance { get; set; } = 0.8f;
 	[Export] public int _killPoints { get; set; } = 10;
 
 	private Player _playerRef;
 	private bool _isDead = false;
+	private float _speed = 50.0f;
+
 
 	public override void _Ready()
 	{
@@ -42,6 +43,11 @@ public partial class EnemyBase : PathFollow2D
 	public override void _Process(double delta)
 	{
 		ProgressOnPath(delta);
+	}
+
+	public void Setup(float speed)
+	{
+		_speed = speed;
 	}
 
 	private void SubscribeToSignals() {

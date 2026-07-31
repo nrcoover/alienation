@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EnemyWave" load_steps=3 format=3 uid="uid://d2l8r8nj3bm2r"]
+
+[ext_resource type="Script" path="res://Resources/EnemyWave.cs" id="1_fnda0"]
+[ext_resource type="PackedScene" uid="uid://wao0uwtxnvrh" path="res://Scenes/Enemies/EnemyBomber.tscn" id="1_h4747"]
+
+[resource]
+script = ExtResource("1_fnda0")
+EnemyScene = ExtResource("1_h4747")
+Speed = 80.0
+Gap = 2.0
+Number = 4
