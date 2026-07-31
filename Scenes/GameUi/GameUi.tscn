@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Scenes/GameUi/GameUi.cs" id="1_jdbvp"]
 [ext_resource type="LabelSettings" uid="uid://bslymv1e3rjua" path="res://assets/GN_32_white.tres" id="2_slyks"]
 
-[node name="GameUi" type="Control" node_paths=PackedStringArray("_healthBar", "_sound")]
+[node name="GameUi" type="Control" node_paths=PackedStringArray("_healthBar", "_sound", "_scoreLabel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,6 +14,7 @@ grow_vertical = 2
 script = ExtResource("1_jdbvp")
 _healthBar = NodePath("ColorRect/MarginContainer/HealthBar")
 _sound = NodePath("Sound")
+_scoreLabel = NodePath("ColorRect/MarginContainer/ScoreLabel")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
