@@ -96,12 +96,19 @@ public partial class Player : Area2D
 
             if (powerUp.GetPowerUpType() == Defs.PowerUpType.Health)
             {
-                // health boost
+                SignalManager.EmitOnPlayerHealthBonus(_healthBoost);
+                GD.Print($"Player::Health boost! {_healthBoost}");
             }
             else if (powerUp.GetPowerUpType() == Defs.PowerUpType.Shield)
             {
                 _shield.EnableShield();
             }
+        }
+        else if(area is HitBox)
+        {
+            var hitBox = area as HitBox;
+            SignalManager.EmitOnPlayerHit(hitBox.GetDamage());
+            GD.Print($"Player::Taking Damage! {hitBox.GetDamage()}");
         }
     }
 }

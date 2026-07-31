@@ -13,10 +13,10 @@ public partial class Level : Node2D
 		if(Input.IsActionJustPressed("test"))
 		{
 			// SignalManager.EmitOnCreatePowerUp(new Vector2(100, 100), (int)Defs.PowerUpType.Shield);
-			// SignalManager.EmitOnCreatePowerUp(new Vector2(100, 100), (int)Defs.PowerUpType.Health);
+			SignalManager.EmitOnCreatePowerUp(new Vector2(250, 200), (int)Defs.PowerUpType.Health);
 			// SignalManager.EmitOnCreateRandomPowerUp(new Vector2(100, 100));
 
-			SignalManager.EmitOnCreateExplosion(new Vector2(100, 100), (int)Defs.ExplosionType.Explosion);
+			// SignalManager.EmitOnCreateExplosion(new Vector2(100, 100), (int)Defs.ExplosionType.Explosion);
 			// SignalManager.EmitOnCreateExplosion(new Vector2(100, 100), (int)Defs.ExplosionType.Boom);
 		}
 
