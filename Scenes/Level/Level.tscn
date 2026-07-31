@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cloqofq2nvy5c"]
+[gd_scene load_steps=10 format=3 uid="uid://cloqofq2nvy5c"]
 
 [ext_resource type="PackedScene" uid="uid://bskpcvncmtef7" path="res://Scenes/ShakeCam/ShakeCam.tscn" id="1_4mykw"]
 [ext_resource type="Script" path="res://Scenes/Level/Level.cs" id="1_q2oye"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b6b0yuijsxai1" path="res://Scenes/ObjectMaker/ObjectMaker.tscn" id="3_cq5ir"]
 [ext_resource type="AudioStream" uid="uid://byiqhs42x1f8" path="res://assets/sounds/loops/Mercury.wav" id="6_0xv4h"]
 [ext_resource type="PackedScene" uid="uid://c2sdyyt2mw3g5" path="res://Scenes/GameUi/GameUi.tscn" id="6_317m1"]
+[ext_resource type="PackedScene" uid="uid://3w3gg0e4mmcu" path="res://Scenes/GameOver/GameOver.tscn" id="7_ntvjt"]
 [ext_resource type="PackedScene" uid="uid://do4xrvj4goto" path="res://Scenes/WaveManager/WaveManager.tscn" id="7_ujrta"]
 [ext_resource type="PackedScene" uid="uid://bc3ivisapki7c" path="res://Scenes/Player/Player.tscn" id="9_tq0dg"]
 
@@ -26,6 +27,8 @@ autoplay = true
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="GameUi" parent="CanvasLayer" instance=ExtResource("6_317m1")]
+
+[node name="GameOver" parent="CanvasLayer" instance=ExtResource("7_ntvjt")]
 
 [node name="Player" parent="." instance=ExtResource("9_tq0dg")]
 position = Vector2(306, 425)
