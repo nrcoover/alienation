@@ -8,6 +8,7 @@ public partial class EnemyBase : PathFollow2D
 	[Export] private AnimatedSprite2D _animatedSprite2D;
 	[Export] private HealthBar _healthBar;
 	[Export] private HitBox _hitBox;
+	[Export] private Node2D _booms;
 				
 	[Export] private bool _shoots { get; set; } = false;
 	[Export] private bool _aimsAtPlayer { get; set; } = false;
@@ -17,8 +18,11 @@ public partial class EnemyBase : PathFollow2D
 	[Export] private float _bulletWaitTime { get; set; } = 2.0f;
 	[Export] private float _bulletWaitTimeVar { get; set; } = 0.05f;
 	[Export] private float _speed = 50.0f;
+	[Export] public float _powerUpChance { get; set; } = 0.8f;
+	[Export] public int _killPoints { get; set; } = 10;
 
 	private Player _playerRef;
+	private bool _isDead = false;
 
 	public override void _Ready()
 	{
@@ -92,7 +96,20 @@ public partial class EnemyBase : PathFollow2D
 
 	private void OnHealthBarDepleted() 
 	{
-		QueueFree();
+		_healthBar.OnDied -= OnHealthBarDepleted;
+
+		if(_isDead)
+		{
+			return;
+		}
+
+		_isDead = true;
+
+		SetProcess(false);
+		MakeBooms();
+		CreatePowerUp();
+		ScoreManager.IncrementScore(_killPoints);
+		CallDeferred(MethodName.QueueFree);
 	}
 
 	private void OnHitBoxAreaEntered(Area2D area)
@@ -100,6 +117,23 @@ public partial class EnemyBase : PathFollow2D
 		if(area is BaseBullet)
 		{
 			_healthBar.TakeDamage((area as BaseBullet).GetDamage());
+		}
+	}
+
+	private void CreatePowerUp()
+	{
+		if(GD.Randf() < _powerUpChance)
+		{
+			SignalManager.EmitOnCreateRandomPowerUp(GlobalPosition);
+		}
+	}
+
+	private void MakeBooms()
+	{
+		foreach(Node2D boom in _booms.GetChildren())
+		{
+			// Create Timer to have each boom separated by .5 seconds.
+			SignalManager.EmitOnCreateExplosion(boom.GlobalPosition, (int)Defs.ExplosionType.Boom);
 		}
 	}
 }

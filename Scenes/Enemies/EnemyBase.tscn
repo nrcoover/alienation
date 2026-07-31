@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://j57uaaweb83i" path="res://Scenes/OutOfTime/OutOfTime.tscn" id="2_jwqlw"]
 [ext_resource type="PackedScene" uid="uid://px34d1f5waek" path="res://Scenes/HealthBar/HealthBar.tscn" id="4_166cj"]
 
-[node name="EnemyBase" type="PathFollow2D" node_paths=PackedStringArray("_laserTimer", "_sound", "_animatedSprite2D", "_healthBar", "_hitBox")]
+[node name="EnemyBase" type="PathFollow2D" node_paths=PackedStringArray("_laserTimer", "_sound", "_animatedSprite2D", "_healthBar", "_hitBox", "_booms")]
 rotates = false
 script = ExtResource("1_bnefj")
 _laserTimer = NodePath("LasterTimer")
@@ -13,6 +13,7 @@ _sound = NodePath("Sound")
 _animatedSprite2D = NodePath("AnimatedSprite2D")
 _healthBar = NodePath("HealthBar")
 _hitBox = NodePath("HitBox")
+_booms = NodePath("BoomsContainer")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 rotation = 3.14159
