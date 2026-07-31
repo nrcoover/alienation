@@ -115,6 +115,7 @@ height = 58.0
 _shoots = true
 _aimsAtPlayer = true
 _bulletType = 2
+_bulletWaitTimeVar = 0.4
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_ps6wf")

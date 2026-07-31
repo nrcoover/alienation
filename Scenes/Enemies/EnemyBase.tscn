@@ -14,6 +14,7 @@ _animatedSprite2D = NodePath("AnimatedSprite2D")
 _healthBar = NodePath("HealthBar")
 _hitBox = NodePath("HitBox")
 _booms = NodePath("BoomsContainer")
+_bulletWaitTimeVar = 0.25
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 rotation = 3.14159
