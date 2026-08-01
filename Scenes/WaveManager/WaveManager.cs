@@ -6,6 +6,7 @@ public partial class WaveManager : Node2D
 	[Export] private Node2D _pathsContainer;
 	[Export] private Timer _spawnTimer;
 	private int _waveCount = 0;
+	private float _speedFactor = 1.0f;
 
 	private Godot.Collections.Array<Path2D> _path2Ds =  new(); 
 	private float _waveGap = 4.0f;
@@ -36,9 +37,18 @@ public partial class WaveManager : Node2D
 	private EnemyBase CreateEnemy(EnemyWave wave)
 	{
 		var newEnemy = (EnemyBase)wave.EnemyScene.Instantiate();
-		// newEnemy.Setup(wave.Speed * _speedFactor);
-		newEnemy.Setup(wave.Speed);
+		newEnemy.Setup(wave.Speed * _speedFactor);
 		return newEnemy;
+	}
+
+	private void UpdateSpeeds()
+	{
+		if (_enemyWavesResource.WaveIsStart(_waveCount))
+		{
+			_speedFactor *= 1.02f;
+			_waveGap *= 0.97f;
+			GD.Print($"update_speeds(): _wave_count: {_waveCount}, _speed_factor: {_speedFactor}, _wave_gap: {_waveGap}");
+		}
 	}
 
 	private void StartSpawnTimer()
@@ -64,6 +74,7 @@ public partial class WaveManager : Node2D
 
 		GD.Print($"wave() {_waveCount} spawned, waiting {wave.Gap}");
 		_waveCount++;
+		UpdateSpeeds();
 		StartSpawnTimer();
 	}
 
