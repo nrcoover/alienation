@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cloqofq2nvy5c"]
+[gd_scene load_steps=11 format=3 uid="uid://cloqofq2nvy5c"]
 
 [ext_resource type="PackedScene" uid="uid://bskpcvncmtef7" path="res://Scenes/ShakeCam/ShakeCam.tscn" id="1_4mykw"]
 [ext_resource type="Script" path="res://Scenes/Level/Level.cs" id="1_q2oye"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://3w3gg0e4mmcu" path="res://Scenes/GameOver/GameOver.tscn" id="7_ntvjt"]
 [ext_resource type="PackedScene" uid="uid://do4xrvj4goto" path="res://Scenes/WaveManager/WaveManager.tscn" id="7_ujrta"]
 [ext_resource type="PackedScene" uid="uid://bc3ivisapki7c" path="res://Scenes/Player/Player.tscn" id="9_tq0dg"]
+[ext_resource type="PackedScene" uid="uid://dvoybc6rgljo7" path="res://Scenes/SaucerManager/SaucerManager.tscn" id="10_j488d"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_q2oye")
@@ -35,3 +36,5 @@ position = Vector2(306, 425)
 _bulletSpeed = 280.0
 
 [node name="WaveManager" parent="." instance=ExtResource("7_ujrta")]
+
+[node name="SaucerManager" parent="." instance=ExtResource("10_j488d")]
