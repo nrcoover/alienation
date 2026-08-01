@@ -8,6 +8,7 @@ public partial class ObjectMaker : Node2D
     private PackedScene _explosion = GD.Load<PackedScene>("res://Scenes/Explosion/Explosion.tscn");
     private PackedScene _enemyBulletScene = GD.Load<PackedScene>("res://Scenes/Bullets/EnemyBullet.tscn");
     private PackedScene _enemyBombScene = GD.Load<PackedScene>("res://Scenes/Bullets/EnemyBomb.tscn");
+    private PackedScene _homingMissileScene = GD.Load<PackedScene>("res://Scenes/HomingMissile/HomingMissile.tscn");
     
     public override void _Ready() 
     { 
@@ -82,7 +83,8 @@ public partial class ObjectMaker : Node2D
 
     private void OnCreateHomingMissile(Vector2 startPos)
     {
-        throw new NotImplementedException();
+        var newScene = _homingMissileScene.Instantiate<HomingMissile>();
+        CallDeferred(MethodName.AddObject, newScene, startPos);
     }
 
     private void OnCreateExplosion(Vector2 startPos, int explosionType)

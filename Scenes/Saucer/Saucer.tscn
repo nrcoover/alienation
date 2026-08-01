@@ -176,6 +176,7 @@ _booms = NodePath("Booms")
 _hitBox = NodePath("HitBox")
 _shootTimer = NodePath("ShootTimer")
 _sound = NodePath("Sound")
+_speed = 35.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_cg2nm")
